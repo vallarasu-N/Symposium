@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register | TechnoVista 2026</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">
+                <span class="logo-text">Techno<span class="highlight">Vista</span></span>
+            </a>
+        </div>
+    </nav>
+
+    <section class="form-section">
+        <div class="form-container">
+            <h2 class="section-title">Symposium Registration</h2>
+            <!-- Flash Messages -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="flash {{ category }}">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <form action="/register" method="POST" class="registration-form" id="regForm">
+                <div class="form-group">
+                    <label for="full_name">Full Name *</label>
+                    <input type="text" id="full_name" name="full_name" required>
+                </div>
+                <div class="form-group">
+                    <label for="college_name">College Name *</label>
+                    <input type="text" id="college_name" name="college_name" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="department">Department *</label>
+                        <input type="text" id="department" name="department" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="year">Year of Study *</label>
+                        <select id="year" name="year" required>
+                            <option value="">Select Year</option>
+                            <option value="1">1st Year</option>
+                            <option value="2">2nd Year</option>
+                            <option value="3">3rd Year</option>
+                            <option value="4">4th Year</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Gender *</label>
+                        <div class="radio-group">
+                            <input type="radio" id="male" name="gender" value="Male" required>
+                            <label for="male">Male</label>
+                            <input type="radio" id="female" name="gender" value="Female">
+                            <label for="female">Female</label>
+                            <input type="radio" id="other" name="gender" value="Other">
+                            <label for="other">Other</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" title="10-digit phone number" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="event_name">Select Event *</label>
+                    <select id="event_name" name="event_name" required>
+                        <option value="">-- Choose Event --</option>
+                        {% for event in events %}
+                            <option value="{{ event }}">{{ event }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Accommodation Required *</label>
+                    <div class="radio-group">
+                        <input type="radio" id="acc_yes" name="accommodation" value="Yes" required>
+                        <label for="acc_yes">Yes</label>
+                        <input type="radio" id="acc_no" name="accommodation" value="No">
+                        <label for="acc_no">No</label>
+                    </div>
+                </div>
+                <button type="submit" class="submit-btn">Submit Registration</button>
+            </form>
+        </div>
+    </section>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

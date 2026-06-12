@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechnoVista 2026 | College Symposium</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- ========== NAVIGATION ========== -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">
+                <span class="logo-text">Techno<span class="highlight">Vista</span></span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#events">Events</a></li>
+                <li><a href="#schedule">Schedule</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="{{ url_for('register') }}" class="nav-btn">Register Now</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ========== HERO SECTION ========== -->
+    <header id="home" class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title animate-fade-in">TechnoVista 2026</h1>
+            <p class="hero-subtitle animate-slide-up">Where Innovation Meets Excellence</p>
+            <p class="hero-date">April 15-16, 2026 | Main Auditorium</p>
+            <a href="{{ url_for('register') }}" class="cta-button">Secure Your Spot</a>
+        </div>
+        <div class="floating-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+        </div>
+    </header>
+
+    <!-- ========== ABOUT SECTION ========== -->
+    <section id="about" class="section about-section">
+        <div class="container">
+            <h2 class="section-title">About TechnoVista</h2>
+            <p class="section-description">
+                TechnoVista is the annual national-level technical symposium of <strong>Vellore Institute of Technology</strong>.
+                Bringing together brilliant minds from across the country, it features workshops, competitions,
+                and talks by industry leaders. Join us for two days of innovation, learning, and unforgettable experiences.
+            </p>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <i class="fas fa-users fa-3x"></i>
+                    <h3>5000+</h3>
+                    <p>Participants</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-calendar-alt fa-3x"></i>
+                    <h3>15+</h3>
+                    <p>Events</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-trophy fa-3x"></i>
+                    <h3>₹2 Lakhs</h3>
+                    <p>Prizes</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== EVENTS SECTION ========== -->
+    <section id="events" class="section events-section">
+        <div class="container">
+            <h2 class="section-title">Event Categories</h2>
+            <div class="events-grid">
+                {% for event in events %}
+                <div class="event-card">
+                    <div class="card-icon">
+                        {% if 'Paper' in event %}<i class="fas fa-file-alt"></i>
+                        {% elif 'Project' in event %}<i class="fas fa-cogs"></i>
+                        {% elif 'Coding' in event %}<i class="fas fa-code"></i>
+                        {% elif 'Robo' in event %}<i class="fas fa-robot"></i>
+                        {% elif 'Hackathon' in event %}<i class="fas fa-laptop-code"></i>
+                        {% elif 'Quiz' in event %}<i class="fas fa-question-circle"></i>
+                        {% elif 'Debate' in event %}<i class="fas fa-comments"></i>
+                        {% elif 'Photography' in event %}<i class="fas fa-camera"></i>
+                        {% elif 'Gaming' in event %}<i class="fas fa-gamepad"></i>
+                        {% else %}<i class="fas fa-star"></i>
+                        {% endif %}
+                    </div>
+                    <h3>{{ event }}</h3>
+                    <p>Showcase your skills and win exciting prizes.</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== SCHEDULE SECTION ========== -->
+    <section id="schedule" class="section schedule-section">
+        <div class="container">
+            <h2 class="section-title">Schedule</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="time">9:00 AM - 10:00 AM</span>
+                        <h3>Inauguration & Keynote</h3>
+                        <p>Main Auditorium</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="time">10:30 AM - 1:00 PM</span>
+                        <h3>Technical Events (Round 1)</h3>
+                        <p>Various Halls</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="time">2:00 PM - 5:00 PM</span>
+                        <h3>Workshops & Hackathon</h3>
+                        <p>Computer Labs & Innovation Centre</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="time">6:00 PM - 8:00 PM</span>
+                        <h3>Cultural Evening & Networking</h3>
+                        <p>Open Air Theatre</p>
+                    </div>
+                </div>
+            </div>
+            <p class="text-center"><em>Detailed schedule will be provided upon registration.</em></p>
+        </div>
+    </section>
+
+    <!-- ========== CONTACT SECTION ========== -->
+    <section id="contact" class="section contact-section">
+        <div class="container">
+            <h2 class="section-title">Contact Us</h2>
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Address</h3>
+                    <p>VIT University, Vellore, Tamil Nadu - 632014</p>
+                </div>
+                <div class="contact-card">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Email</h3>
+                    <p>technovista@vit.ac.in</p>
+                </div>
+                <div class="contact-card">
+                    <i class="fas fa-phone"></i>
+                    <h3>Phone</h3>
+                    <p>+91 98765 43210</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>Techno<span class="highlight">Vista</span></h3>
+                    <p>Connecting minds, creating futures.</p>
+                </div>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 TechnoVista Symposium. All rights reserved.</p>
+                <a href="{{ url_for('admin_login') }}" class="admin-link">Admin</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

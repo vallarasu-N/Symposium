@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | TechnoVista</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="admin-panel">
+        <aside class="admin-sidebar">
+            <h2>Admin Panel</h2>
+            <a href="{{ url_for('admin_dashboard') }}" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+            <a href="{{ url_for('export_csv') }}"><i class="fas fa-download"></i> Export CSV</a>
+            <a href="{{ url_for('admin_logout') }}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </aside>
+        <main class="admin-main">
+            <h1>Registrations</h1>
+            <div class="admin-toolbar">
+                <input type="text" id="searchInput" placeholder="Search by name, email or ID...">
+                <select id="eventFilter">
+                    <option value="">All Events</option>
+                    {% for event in events %}
+                        <option value="{{ event }}">{{ event }}</option>
+                    {% endfor %}
+                </select>
+                <span class="total-count">Total: <strong id="totalCount">0</strong></span>
+            </div>
+            <table class="reg-table">
+                <thead>
+                    <tr>
+                        <th>Reg ID</th>
+                        <th>Name</th>
+                        <th>College</th>
+                        <th>Event</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Date</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    <!-- Populated via JavaScript -->
+                </tbody>
+            </table>
+            <p id="noResults" style="display:none;">No registrations found.</p>
+        </main>
+    </div>
+    <script src="{{ url_for('static', filename='js/admin.js') }}"></script>
+</body>
+</html>
